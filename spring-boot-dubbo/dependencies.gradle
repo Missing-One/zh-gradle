@@ -1,0 +1,41 @@
+//dependencies{
+//    compile(
+//            libs["dubbo"],
+//            libs["zookeeper"],
+//            libs["springboot-web"],
+//    )
+//    testCompile(
+//            libs["junit"],
+//            libs["swagger2"],
+//            libs["swagger-ui"],
+//            libs["springboot-test"],
+//    )
+//}
+
+
+
+ext.v = [
+        junit        : '4.12',
+        dubbo        : '2.6.1',
+        swagger2     : '2.8.0',
+        zookeeper    : '3.5.3-beta',
+        springboot   : '1.5.8.RELEASE',
+]
+ext.libs = [
+        // spring boot 1.5.8,
+        "springboot-start"              : "org.springframework.boot:spring-boot-starter:$v.springboot",
+        "springboot-web"                : "org.springframework.boot:spring-boot-starter-web:$v.springboot",
+        "springboot-redis"              : "org.springframework.boot:spring-boot-starter-data-redis:$v.springboot",
+        // debug启动
+        "springboot-devtools"           : "org.springframework.boot:spring-boot-devtools:$v.springboot",
+        "springboot-test"               : "org.springframework.boot:spring-boot-starter-test:$v.springboot",
+
+        // rpc
+        "dubbo"                           :"com.alibaba:dubbo:$v.dubbo",
+        "zookeeper"                      : "org.apache.zookeeper:zookeeper:$v.zookeeper",
+
+        // 测试框架
+        "junit"                           :"junit:junit:$v.junit",
+        "swagger2"                       : "io.springfox:springfox-swagger2:$v.swagger2",
+        "swagger-ui"                     :"io.springfox:springfox-swagger-ui:$v.swagger2"
+]

@@ -1,0 +1,58 @@
+// 引入jar包定义
+// 这个文件中定义的jar包可以直接在子项目中使用，不需要再次使用 apply from 这个语句
+apply from: "dependencies.gradle"
+
+buildscript {
+    repositories {
+        mavenLocal()
+        maven { url "http://maven.aliyun.com/nexus/content/groups/public" }
+    }
+    dependencies {
+        classpath "org.springframework.boot:spring-boot-gradle-plugin:1.5.8.RELEASE"
+    }
+}
+
+allprojects {
+    group project_group
+    version project_version
+    apply plugin: 'idea'
+    apply plugin: 'java'
+    apply plugin: 'org.springframework.boot'
+    apply plugin: 'io.spring.dependency-management'
+    sourceCompatibility = project_jdk
+    targetCompatibility = project_jdk
+
+    repositories {
+        mavenLocal()
+        maven { url "http://maven.aliyun.com/nexus/content/groups/public/" }
+    }
+}
+
+subprojects{
+
+   [compileJava, compileTestJava, javadoc]*.options*.encoding = 'UTF-8'
+
+    repositories {
+        mavenLocal()
+        maven{ url 'http://maven.aliyun.com/nexus/content/groups/public/' }
+
+    }
+    dependencies{
+        compile(
+                libs["dubbo"],
+                libs["zookeeper"],
+                libs["springboot-start"],
+                libs["springboot-web"],
+                libs["swagger2"],
+                libs["swagger-ui"],
+        )
+        testCompile(
+                libs["junit"],
+                libs["springboot-test"],
+        )
+        compile "org.apache.curator:curator-framework:2.8.0"
+        compile group: 'org.aspectj', name: 'aspectjrt', version: '1.8.13'
+
+    }
+
+}
